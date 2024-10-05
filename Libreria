@@ -1,0 +1,33 @@
+class Libro:
+    # Attributo di classe per contare il numero di libri
+    numero_libri = 0
+
+    def __init__(self, titolo, autore, isbn):
+        self.titolo = titolo
+        self.autore = autore
+        self.isbn = isbn
+        Libro.numero_libri += 1  # Incrementa il conteggio dei libri
+
+    def visualizza_informazioni(self):
+        """Mostra le informazioni del libro."""
+        print(f"Titolo: {self.titolo}")
+        print(f"Autore: {self.autore}")
+        print(f"ISBN: {self.isbn}")
+
+    @staticmethod
+    def conta_libri():
+        """Restituisce il numero totale di libri creati."""
+        return Libro.numero_libri
+
+# Esempio di utilizzo della classe
+if __name__ == "__main__":
+    libro1 = Libro("Il grande Gatsby", "F. Scott Fitzgerald", "9780743273565")
+    libro2 = Libro("1984", "George Orwell", "9780451524935")
+
+    # Visualizza le informazioni dei libri
+    libro1.visualizza_informazioni()
+    print()  # Spazio tra le informazioni
+    libro2.visualizza_informazioni()
+
+    # Conta il numero di libri
+    print(f"Numero totale di libri: {Libro.conta_libri()}")

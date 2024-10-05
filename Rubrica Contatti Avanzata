@@ -1,0 +1,62 @@
+class Contatto:
+    def __init__(self, nome, telefono, email, note):
+        self.nome = nome
+        self.telefono = telefono
+        self.email = email
+        self.note = note
+
+    def visualizza_dettagli(self):
+        """Mostra i dettagli del contatto."""
+        print(f"Nome: {self.nome}")
+        print(f"Telefono: {self.telefono}")
+        print(f"Email: {self.email}")
+        print(f"Note: {self.note}")
+
+    @classmethod
+    def crea_contatto_predefinito(cls):
+        """Crea un contatto predefinito."""
+        return cls("Nome Predefinito", "123456789", "email@esempio.com", "Nessuna nota")
+
+    def modifica_note(self, nuove_note):
+        """Modifica le note del contatto."""
+        self.note = nuove_note
+
+    @staticmethod
+    def cerca_contatto(contatti, nome):
+        """Cerca un contatto in base al nome."""
+        for contatto in contatti:
+            if contatto.nome.lower() == nome.lower():
+                return contatto
+        return None
+
+# Esempio di utilizzo della classe
+if __name__ == "__main__":
+    # Creazione di alcuni contatti
+    contatto1 = Contatto("Mario Rossi", "3456789123", "mario.rossi@email.com", "Amico di scuola")
+    contatto2 = Contatto("Giulia Bianchi", "3345678912", "giulia.bianchi@email.com", "Collega di lavoro")
+    
+    # Visualizza i dettagli dei contatti
+    contatto1.visualizza_dettagli()
+    print()  # Spazio tra i dettagli
+    contatto2.visualizza_dettagli()
+
+    # Crea un contatto predefinito
+    contatto_predefinito = Contatto.crea_contatto_predefinito()
+    print("\nContatto predefinito:")
+    contatto_predefinito.visualizza_dettagli()
+
+    # Modifica le note di un contatto
+    contatto1.modifica_note("Amico di università")
+    print("\nDopo la modifica delle note:")
+    contatto1.visualizza_dettagli()
+
+    # Cerca un contatto
+    contatti = [contatto1, contatto2]
+    nome_da_cercare = "Giulia Bianchi"
+    contatto_trovato = Contatto.cerca_contatto(contatti, nome_da_cercare)
+
+    if contatto_trovato:
+        print(f"\nContatto trovato: {contatto_trovato.nome}")
+        contatto_trovato.visualizza_dettagli()
+    else:
+        print(f"\nContatto '{nome_da_cercare}' non trovato.")

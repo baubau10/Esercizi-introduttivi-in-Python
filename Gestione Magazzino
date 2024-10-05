@@ -1,0 +1,30 @@
+class Prodotto:
+    # Attributo di classe per contare il numero di prodotti
+    numero_prodotti = 0
+
+    def __init__(self, nome, quantita, prezzo):
+        self.nome = nome
+        self.quantita = quantita
+        self.prezzo = prezzo
+        Prodotto.numero_prodotti += 1  # Incrementa il conteggio dei prodotti
+
+    def valore_totale(self):
+        """Calcola e restituisce il valore totale del prodotto in magazzino."""
+        return self.quantita * self.prezzo
+
+    @staticmethod
+    def conta_prodotti():
+        """Restituisce il numero totale di prodotti creati."""
+        return Prodotto.numero_prodotti
+
+# Esempio di utilizzo della classe
+if __name__ == "__main__":
+    prodotto1 = Prodotto("Mela", 50, 0.30)
+    prodotto2 = Prodotto("Banana", 30, 0.20)
+
+    # Calcola e mostra il valore totale di ciascun prodotto
+    print(f"Valore totale di {prodotto1.nome}: {prodotto1.valore_totale()}€")
+    print(f"Valore totale di {prodotto2.nome}: {prodotto2.valore_totale()}€")
+
+    # Conta il numero di prodotti
+    print(f"Numero totale di prodotti: {Prodotto.conta_prodotti()}")

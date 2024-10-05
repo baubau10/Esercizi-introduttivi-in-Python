@@ -1,0 +1,36 @@
+class Calcolatrice:
+    @staticmethod
+    def somma(a, b):
+        """Restituisce la somma di a e b."""
+        return a + b
+
+    @staticmethod
+    def sottrazione(a, b):
+        """Restituisce la sottrazione di b da a."""
+        return a - b
+
+    @staticmethod
+    def moltiplicazione(a, b):
+        """Restituisce il prodotto di a e b."""
+        return a * b
+
+    @staticmethod
+    def divisione(a, b):
+        """Restituisce la divisione di a per b. 
+        Solleva un'eccezione se b è zero."""
+        if b == 0:
+            raise ValueError("Non è possibile dividere per zero.")
+        return a / b
+
+# Programma principale
+if __name__ == "__main__":
+    num1 = float(input("Inserisci il primo numero: "))
+    num2 = float(input("Inserisci il secondo numero: "))
+
+    print(f"Somma: {Calcolatrice.somma(num1, num2)}")
+    print(f"Sottrazione: {Calcolatrice.sottrazione(num1, num2)}")
+    print(f"Moltiplicazione: {Calcolatrice.moltiplicazione(num1, num2)}")
+    try:
+        print(f"Divisione: {Calcolatrice.divisione(num1, num2)}")
+    except ValueError as e:
+        print(e)

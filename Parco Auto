@@ -1,0 +1,62 @@
+class Auto:
+    # Attributo di classe per contare il numero di auto
+    numero_auto = 0
+
+    def __init__(self, modello, marca, anno, prezzo):
+        self.modello = modello
+        self.marca = marca
+        self.anno = anno
+        self.prezzo = prezzo
+        Auto.numero_auto += 1  # Incrementa il conteggio delle auto
+
+    def visualizza_dettagli(self):
+        """Mostra i dettagli dell'auto."""
+        print(f"Modello: {self.modello}")
+        print(f"Marca: {self.marca}")
+        print(f"Anno: {self.anno}")
+        print(f"Prezzo: {self.prezzo:.2f}€")
+
+    def calcola_ammortamento(self, anno_corrente):
+        """Calcola l'ammortamento dell'auto in base all'anno corrente."""
+        anni = anno_corrente - self.anno
+        if anni < 0:
+            return 0  # Auto di prossima uscita, nessun ammortamento
+        ammortamento = self.prezzo * (0.15 * anni)  # Supponiamo un'ammortamento del 15% all'anno
+        valore_attuale = self.prezzo - ammortamento
+        return max(valore_attuale, 0)  # Non può scendere sotto zero
+
+    @classmethod
+    def confronta_auto(cls, auto1, auto2):
+        """Confronta due auto e restituisce quale ha un prezzo maggiore."""
+        if auto1.prezzo > auto2.prezzo:
+            return f"{auto1.modello} è più costosa di {auto2.modello}."
+        elif auto1.prezzo < auto2.prezzo:
+            return f"{auto2.modello} è più costosa di {auto1.modello}."
+        else:
+            return f"{auto1.modello} e {auto2.modello} hanno lo stesso prezzo."
+
+    @staticmethod
+    def conta_auto():
+        """Restituisce il numero totale di auto create."""
+        return Auto.numero_auto
+
+# Esempio di utilizzo della classe
+if __name__ == "__main__":
+    auto1 = Auto("Model S", "Tesla", 2019, 79999)
+    auto2 = Auto("Civic", "Honda", 2021, 22000)
+
+    # Visualizza i dettagli delle auto
+    auto1.visualizza_dettagli()
+    print()  # Spazio tra i dettagli
+    auto2.visualizza_dettagli()
+
+    # Calcola e mostra l'ammortamento
+    anno_corrente = 2024
+    print(f"\nValore attuale di {auto1.modello}: {auto1.calcola_ammortamento(anno_corrente):.2f}€")
+    print(f"Valore attuale di {auto2.modello}: {auto2.calcola_ammortamento(anno_corrente):.2f}€")
+
+    # Confronta i prezzi delle auto
+    print("\n" + Auto.confronta_auto(auto1, auto2))
+
+    # Conta il numero di auto
+    print(f"\nNumero totale di auto: {Auto.conta_auto()}")

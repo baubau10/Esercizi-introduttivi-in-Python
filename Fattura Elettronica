@@ -1,0 +1,27 @@
+from datetime import datetime
+
+class Fattura:
+    def __init__(self, cliente, importo, data):
+        self.cliente = cliente
+        self.importo = importo
+        self.data = data
+
+    def visualizza_fattura(self):
+        """Visualizza i dettagli della fattura."""
+        print(f"Fattura per: {self.cliente}")
+        print(f"Importo: {self.importo:.2f}€")
+        print(f"Data: {self.data.strftime('%d/%m/%Y')}")
+
+    @classmethod
+    def crea_fattura_odierna(cls, cliente, importo):
+        """Crea una fattura con la data odierna."""
+        data_odierna = datetime.now()
+        return cls(cliente, importo, data_odierna)
+
+# Esempio di utilizzo della classe
+if __name__ == "__main__":
+    # Creazione di una fattura con data odierna
+    fattura1 = Fattura.crea_fattura_odierna("Mario Rossi", 150.75)
+    
+    # Visualizza la fattura
+    fattura1.visualizza_fattura()
